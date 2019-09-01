@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        Refresh();
+        //Refresh();
     }
 
     public void Refresh()

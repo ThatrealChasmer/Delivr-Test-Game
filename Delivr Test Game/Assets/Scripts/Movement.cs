@@ -5,14 +5,19 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public Rigidbody rb;
+    public GameObject camera;
 
-    public int speed;
+    public float maxSpeed;
 
-    public int angleX;
-    public int angleY;
-    public int angleZ;
+    public float maxAcc;
+
+    public float turnSpeed;
+
+    public float maxTurnSpeed;
 
     public float smooth;
+
+    Vector3 currentRotation = new Vector3(0,0,0);
     // Start is called before the first frame update
     void Start()
     {
@@ -21,17 +26,19 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //rb.AddRelativeForce(new Vector3(0, 0, speed));
+        float Horizontal = Input.GetAxis("Horizontal");
+        float Vertical = Input.GetAxis("Vertical");
 
-        float tiltX = Input.GetAxis("Vertical") * angleX;
-        float tiltY = Input.GetAxis("Horizontal") * angleY;
+        Vector3 vDiff = transform.forward * maxSpeed - rb.velocity; //Difference between current velocity and intended velocity.
+        if (vDiff.magnitude > maxAcc)
+            vDiff *= maxAcc / vDiff.magnitude;
+        rb.AddForce(vDiff, ForceMode.VelocityChange);
 
-        Debug.Log(tiltX + ", " + tiltY);
-
-        Quaternion target = Quaternion.Euler(new Vector3(transform.rotation.x + tiltX,transform.rotation.y + tiltY, 0));
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+        Vector3 turn = -1 * (turnSpeed * (-transform.up * Horizontal + transform.right * Vertical) + rb.angularVelocity);
+        float mag = turn.magnitude;
+        turn.Normalize();
+        rb.AddTorque(turn * Mathf.Clamp(mag, 0, maxTurnSpeed * Time.fixedDeltaTime), ForceMode.VelocityChange);
     }
 }
