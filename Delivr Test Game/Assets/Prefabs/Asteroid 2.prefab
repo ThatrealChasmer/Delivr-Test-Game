@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: -4666377710907184366}
   m_Layer: 0
   m_Name: Asteroid 2
-  m_TagString: Enemy
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,7 +334,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6707502471306777227}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 027322126f62c314aa826b6c6f3dfce2, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.1

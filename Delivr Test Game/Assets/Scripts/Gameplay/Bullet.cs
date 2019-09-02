@@ -13,4 +13,12 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.collider.CompareTag("Asteroid"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
