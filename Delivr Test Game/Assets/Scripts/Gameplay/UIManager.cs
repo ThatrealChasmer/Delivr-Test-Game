@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     {
         for(int i = 0; i < SessionInfo.lives; i++)
         {
-            Instantiate(lifePrefab, ui.transform.position + new Vector3(i * lifePrefab.GetComponent<RectTransform>().sizeDelta.x, 0, 0), Quaternion.identity, ui.transform);
+            Instantiate(lifePrefab, ui.transform.position + new Vector3(10 + i * (10 + lifePrefab.GetComponent<RectTransform>().sizeDelta.x), -10, 0), Quaternion.identity, ui.transform);
         }
     }
 

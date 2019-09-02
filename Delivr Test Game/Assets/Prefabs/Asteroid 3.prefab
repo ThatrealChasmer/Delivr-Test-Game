@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
+  score: 3
   smallerAsteroid: {fileID: 6707502471306777227, guid: e16804be87a9ebd44864a5de63f40660,
     type: 3}
   AsteroidsParent: {fileID: 0}

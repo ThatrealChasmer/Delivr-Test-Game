@@ -21,6 +21,8 @@ public class Buttons : MonoBehaviour
 
     public void PlayButton()
     {
+        SessionInfo.currentScore = 0;
+        SessionInfo.lives = 3;
         SceneManager.LoadScene("Gameplay");
     }
 

@@ -6,6 +6,8 @@ public class Asteroid : MonoBehaviour
 {
     public int hp;
 
+    public int score;
+
     public GameObject smallerAsteroid;
 
     public GameObject AsteroidsParent;
@@ -30,6 +32,7 @@ public class Asteroid : MonoBehaviour
             hp--;
             if(hp <= 0)
             {
+                SessionInfo.currentScore += score;
                 Destroy(gameObject);
                 if(smallerAsteroid != null)
                 {
