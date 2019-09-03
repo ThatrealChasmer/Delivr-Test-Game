@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    public GameSettings settings;
+
     public GameObject bulletPrefab;
 
     public float delay;
@@ -14,20 +16,24 @@ public class Shooting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        delay = settings.shotDelay;
+        bulletSpeed = settings.bulletSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1") && timer <= 0)
+        if(SessionInfo.playing && !SessionInfo.pause)
         {
-            Shoot();
-            timer = delay;
-        }
-        else
-        {
-            timer -= Time.deltaTime;
+            if (Input.GetButton("Fire1") && timer <= 0)
+            {
+                Shoot();
+                timer = delay;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
         }
     }
 

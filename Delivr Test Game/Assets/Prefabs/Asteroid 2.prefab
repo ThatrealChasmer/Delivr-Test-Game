@@ -382,8 +382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66942feda1dfcc49914d0bf7d449072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 19d2da47b99b02a4ab62d753e2c3ea15, type: 2}
+  type: 
   hp: 3
   score: 2
   smallerAsteroid: {fileID: 3925737678710355374, guid: 9dbdd995f8aea85498df2ec6fa4b0989,
     type: 3}
   AsteroidsParent: {fileID: 0}
+  toSpawn: 0

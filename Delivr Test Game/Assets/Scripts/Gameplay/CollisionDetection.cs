@@ -10,7 +10,6 @@ public class CollisionDetection : MonoBehaviour
     {
         if(col.collider.CompareTag("Asteroid") && ship.dead == false)
         {
-            Debug.Log("HIT!");
             ship.dead = true;
             ship.Death();
         }

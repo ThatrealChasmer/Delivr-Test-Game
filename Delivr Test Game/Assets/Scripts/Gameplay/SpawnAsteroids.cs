@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class SpawnAsteroids : MonoBehaviour
 {
-    public bool playing;
+    public GameSettings settings;
     public int maxAsteroids;
     public GameObject asteroidParent;
+    public float timeToStart;
     public float delay;
     public List<GameObject> asteroidPrefabs;
-    public int distance;
+    public float distance;
 
     // Start is called before the first frame update
     void Start()
     {
-        playing = true;
-        StartCoroutine(SpawnAsteroid());
+        maxAsteroids = settings.maxAsteroids;
+        timeToStart = settings.delay;
+        delay = settings.asteroidDelay;
+        distance = settings.spawnDistance;
+        Invoke("Delay", timeToStart);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Delay()
     {
-        
+        StartCoroutine(SpawnAsteroid());
     }
 
     public IEnumerator SpawnAsteroid()
     {
-        while(playing)
+        while(SessionInfo.playing)
         {
             if(asteroidParent.transform.childCount < maxAsteroids)
             {

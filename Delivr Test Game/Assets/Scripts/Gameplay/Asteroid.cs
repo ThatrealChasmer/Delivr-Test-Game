@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    public GameSettings settings;
+
+    public string type;
+
     public int hp;
 
     public int score;
@@ -12,9 +16,29 @@ public class Asteroid : MonoBehaviour
 
     public GameObject AsteroidsParent;
 
+    public int toSpawn;
+
     // Start is called before the first frame update
     void Start()
     {
+        if(type == "big")
+        {
+            hp = settings.bigHP;
+            score = settings.bigScore;
+        }
+        else if(type == "medium")
+        {
+            hp = settings.mediumHP;
+            score = settings.mediumScore;
+        }
+        else if(type == "small")
+        {
+            hp = settings.smallHP;
+            score = settings.smallScore;
+        }
+
+        toSpawn = settings.toSpawn;
+
         AsteroidsParent = GameObject.Find("Asteroids");
         GetComponent<Rigidbody>().AddForce(100 * new Vector3(Random.Range(5, 15), Random.Range(5, 15), Random.Range(5, 15)));
     }
@@ -36,9 +60,11 @@ public class Asteroid : MonoBehaviour
                 Destroy(gameObject);
                 if(smallerAsteroid != null)
                 {
-                    Vector3 spawnPoint = new Vector3(Random.Range(1, 3), Random.Range(1, 3), Random.Range(1, 3));
-                    Instantiate(smallerAsteroid, transform.position + spawnPoint, Quaternion.identity, AsteroidsParent.transform);
-                    Instantiate(smallerAsteroid, transform.position - spawnPoint, Quaternion.identity, AsteroidsParent.transform);
+                    for(int i = 0; i < toSpawn; i++)
+                    {
+                        Vector3 spawnPoint = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), Random.Range(-3, 3));
+                        Instantiate(smallerAsteroid, transform.position + spawnPoint, Quaternion.identity, AsteroidsParent.transform);
+                    }
                 }
             }
         }

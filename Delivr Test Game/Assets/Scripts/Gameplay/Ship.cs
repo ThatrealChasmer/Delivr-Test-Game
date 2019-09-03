@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
+    public GameObject gameover;
+    public GameObject mesh;
+
     public bool dead;
 
     public void Death()
@@ -18,8 +21,9 @@ public class Ship : MonoBehaviour
                 PlayerPrefs.SetInt("highscore", SessionInfo.currentScore);
                 PlayerPrefs.Save();
             }
-
-            SceneManager.LoadScene("MainMenu");
+            SessionInfo.playing = false;
+            Destroy(mesh);
+            gameover.SetActive(true);
         }
         else
         {

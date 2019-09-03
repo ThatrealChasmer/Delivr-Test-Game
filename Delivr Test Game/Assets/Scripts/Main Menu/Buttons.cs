@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+    public GameSettings settings;
+
     public Text hsValue;
 
     // Start is called before the first frame update
@@ -22,7 +24,8 @@ public class Buttons : MonoBehaviour
     public void PlayButton()
     {
         SessionInfo.currentScore = 0;
-        SessionInfo.lives = 3;
+        SessionInfo.lives = settings.lives;
+        SessionInfo.playing = true;
         SceneManager.LoadScene("Gameplay");
     }
 
